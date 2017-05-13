@@ -1,0 +1,39 @@
+<%- include head %>
+<%- include header %>
+	<div class="main">
+		<div class="container">
+			<form id="main-form">
+				<div class="main-logo"></div>
+				<div class="main-enter">
+					<input placeholder="https://" class="main-enter-input" name="url" type="text" value="https://">
+					<button class="main-enter-submit" type="submit">
+						<i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+						<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>	
+					</button>
+					<div class="main-enter-process">
+						<div class="main-enter-process-step">
+							<div class="main-enter-process-step-icon" style="background-image: url(/img/step1.png)">
+								<img width="100%" src="/img/11.png">
+							</div>
+							Step1.<br />
+							Enter your website address.
+						</div><div class="main-enter-process-step">
+							<div class="main-enter-process-step-icon" style="background-image: url(/img/step2.png)">
+								<img width="100%"  src="/img/11.png">
+							</div>
+							Step2.<br />
+							Prove your website.
+						</div><div class="main-enter-process-step">
+							<div class="main-enter-process-step-icon" style="background-image: url(/img/step3.png)">
+								<img width="100%" src="/img/11.png">
+							</div>
+							Step3.<br />
+							We analyze the vulnerability of your website.
+						</div>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+	</div>
+<%- include footer %>
