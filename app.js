@@ -1,4 +1,4 @@
-global.apiUrl = "localhost:2222"
+global.apiUrl = "222.118.108.145:2222"
 
 var express = require('express');
 var path = require('path');

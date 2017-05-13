@@ -96,10 +96,7 @@ router.get("/attack", function (req, res, next) {
   request({ url: req.protocol + "://" + global.apiUrl + '/attack.php?url=' + url + "&hex=" + hex + "&type=" + type },
     function (err, res3, body2) {
 
-      res.status(200).send({
-        code: "200",
-        message: "success"
-      });
+      res.send(body2);
 
     }
   );
@@ -122,7 +119,7 @@ router.get("/progress", function (req, res, next) {
 router.get("/getInfo", function (req, res, next) {
   var hex = req.session.checkSum;
 
-  request({ url: req.protocol + "://" + global.apiUrl + '/progress.php?hex=' + hex },
+  request({ url: req.protocol + "://" + global.apiUrl + '/getInfo.php?hex=' + hex },
     function (err, res3, body2) {
 
       res.send(body2);
@@ -131,6 +128,8 @@ router.get("/getInfo", function (req, res, next) {
   );
 
 });
+
+
 
 router.get("/select", function (req, res, next) {
   console.log(req.query.type);
