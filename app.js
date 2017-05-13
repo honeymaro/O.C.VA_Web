@@ -4,9 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var apiRoutes = require('./routes/api');
+var sha256 = require('sha256');
 
 var app = express();
 
@@ -21,6 +23,13 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(cookieParser());
+app.use(session({
+  key: 'ocva', // 세션키
+  secret: 'ocvasecret', // 비밀키
+  cookie: {
+    maxAge: 1000 * 60 * 60 // 쿠키 유효기간 1시간
+  }
+}));
 app.use(bodyParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +44,9 @@ app.use(function (req, res, next) {
   err.status = 404;
   next(err);
 });
+
+// console.log(sha256("젠장"));
+
 
 // error handlers
 

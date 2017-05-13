@@ -26,6 +26,10 @@ router.get('/prove', function (req, res, next) {
   viewFile("prove", req, res);
 });
 
+router.get('/progress', function (req, res, next) {
+  viewFile("progress", req, res);
+});
+
 
 var viewFile = function (filename, req, res, param) {
   var fullUrl = req.protocol + '://' + req.get('host') + req.path;

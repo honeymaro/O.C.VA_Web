@@ -27,7 +27,7 @@ $(document).ready(function () {
 			type: 'GET'
 		}).done(function (data) {
 			console.log(data);
-			location.href = "/select?url=" + $(".main-enter-input").val();
+			location.href = "/select";
 
 		}).fail(function (xhr, ajaxOptions, thrownError) {
 			if (xhr.status == 403) {
