@@ -68,8 +68,16 @@
 
 	.header .header-logo {
 		width: auto;
-		height: 100%;
+		height: 40px;
+		float: left;
+		vertical-align: top;
+	}
 
+	.header .header-logo img {
+		height: 100%;
+		width: auto;
+
+		vertical-align: top;
 	}
 
 	.header .header-menu{
@@ -79,6 +87,7 @@
 		line-height: 40px;
 		color: #231f20;
 		float: right;
+		vertical-align: top;
 	}
 
 	.header .header-menu a{
@@ -196,6 +205,7 @@
 		height: auto;
 		display: inline-block;
 		vertical-align: top;
+		padding: 10px;
 		
 	}
 
@@ -209,6 +219,116 @@
 		margin-bottom: 10px;
 	}
 
+
+	.select {
+		width: 100%;
+		height: 100%;
+		padding-top: 160px;
+	}
+
+	.select-list .select-list-title{
+		display: block;
+		font-size: 1.2em;
+		margin-bottom: 24px;
+	}
+
+	.select-list{
+		width: 100%;
+		height: auto;
+		max-width: 500px;
+		position: relative;
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 25px;
+
+	}
+
+	.select-list .select-list-submit{
+		float: right;
+		display: block;
+		padding: 10px 30px;
+		background-color: #ee4bb6;
+		border-radius: 10px;
+		border: none;
+		color: #fff;
+		font-size: 1.2em;
+		cursor: pointer;
+		margin-top: 20px;
+	}
+
+	.prove{
+		width: 100%;
+		height: 100%;
+		padding-top: 160px;
+	}
+
+	.prove .prove-process{
+		
+		width: 100%;
+		height: auto;
+		max-width: 500px;
+		position: relative;
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 25px;
+	}
+
+	.prove .prove-process .prove-process-step{
+		width: 100%;
+		height: auto;
+		margin-bottom: 40px;
+		/*margin: 15px 0px;*/
+	}
+
+	.prove .prove-process .prove-process-step .prove-process-step-title{
+		display: block;
+		font-size: 1.2em;
+	}
+	.prove .prove-process .prove-process-step .prove-process-step-copy{
+		padding: 10px;
+		border: 1px solid #ee4bb6;
+		border-radius: 5px;
+		width: 100%;
+		cursor: text;
+		font-size: 1.4em;
+
+	}
+	
+
+	input[type="checkbox"]{
+		display: none;
+	}
+
+	input[type="checkbox"] + label{
+		width: 100%;
+		height: 40px;
+		padding: 10px 10px 10px 40px;
+		line-height: 18px;
+		/*background-color: #231f20;*/
+		display: block;
+		margin: 5px 0px;
+		background-image: url(/img/select1.png);
+		background-size: auto 50%;
+		background-repeat: no-repeat;
+		background-position: 10px 10px;
+		-webkit-transition: all 0.1s ease-in-out;
+		-moz-transition: all 0.1s ease-in-out;
+		transition: all 0.1s ease-in-out;
+		cursor: pointer;
+
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+
+
+	}
+
+	input[type="checkbox"]:checked + label{
+		background-image: url(/img/select2.png);
+	}
+
+
 	.footer{
 		width: 100%;
 		height: 40px;
@@ -219,6 +339,8 @@
 		left: 0px;
 
 	}
+
+
 
     .div4{
         width: 25%;

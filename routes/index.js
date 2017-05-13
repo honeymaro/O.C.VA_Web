@@ -18,6 +18,15 @@ router.get('/main', function (req, res, next) {
   // viewFile("main", req, res);
 });
 
+router.get('/select', function (req, res, next) {
+  viewFile("select", req, res);
+});
+
+router.get('/prove', function (req, res, next) {
+  viewFile("prove", req, res);
+});
+
+
 var viewFile = function (filename, req, res, param) {
   var fullUrl = req.protocol + '://' + req.get('host') + req.path;
 
