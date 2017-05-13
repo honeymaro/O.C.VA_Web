@@ -17,7 +17,8 @@ $(document).ready(function () {
 
 		}).fail(function (xhr, ajaxOptions, thrownError) {
 			if (xhr.status == 403) {
-				alert(JSON.parse(xhr.responseText).message);
+				alert("일치하는 파일이 존재하지 않습니다!");
+				// alert(JSON.parse(xhr.responseText).message);
 			}
 			else{
 				alert("error!");

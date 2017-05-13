@@ -11,17 +11,17 @@
 					분석할 취약점을 선택해주세요.
 				</span>
 				<form id="select-form">
-					<input id="selectAll" type="checkbox" name="select[]" >
+					<input id="selectAll" type="checkbox">
 					<label for="selectAll">Select All</label>
 
-					<input id="select1" type="checkbox" name="select[]" >
-					<label for="select1">select1</label>
+					<input id="select1" type="checkbox" name="type[]" value="0">
+					<label for="select1">Command Line Injection</label>
 
-					<input id="select2" type="checkbox" name="select[]" >
-					<label for="select2">select2</label>
+					<input id="select2" type="checkbox" name="type[]" value="1">
+					<label for="select2">XSS</label>
 					
-					<input id="select3" type="checkbox" name="select[]" >
-					<label for="select3">select3</label>
+					<input id="select3" type="checkbox" name="type[]" value="2">
+					<label for="select3">SQL Injection</label>
 
 					<button class="select-list-submit" type="submit">이것도 너프해 보시지!</button>
 					<div class="clearfix"></div>

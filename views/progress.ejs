@@ -4,15 +4,23 @@
 		<div class="container">
 			<div class="progress-list">
 				<span class="progress-list-percent">0%</span>
-				<div class="progress-list-item">
-					selected1
+				<% console.log(req.session.type) %>
+				<% if(req.session.type.indexOf('0') >= 0) { %>
+				<div class="progress-list-item" pg-id="0">
+					Command Line Injection
 				</div>
-				<div class="progress-list-item">
-					selected2
+				<% } %>
+				<% if(req.session.type.indexOf('1') >= 0) { %>
+				<div class="progress-list-item" pg-id="1">
+					XSS
 				</div>
-				<div class="progress-list-item">
-					selected3
+				<% } %>
+				<% if(req.session.type.indexOf('2') >= 0) { %>
+				<div class="progress-list-item" pg-id="2">
+					SQL Injection
 				</div>
+				<% } %>
+				
 			</div>
 		</div>
 	</div>

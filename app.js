@@ -1,3 +1,5 @@
+global.apiUrl = "localhost:2222"
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -11,6 +13,10 @@ var apiRoutes = require('./routes/api');
 var sha256 = require('sha256');
 
 var app = express();
+
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer({});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +44,21 @@ app.use('/', routes);
 app.use('/api', apiRoutes);
 app.use('/api/v1', apiRoutes);
 
+
+app.use('/api', function(req, res){
+  var ip = (req.headers['x-forwarded-for'] || '').split(',')[0] 
+              || req.connection.remoteAddress;
+  req.headers['x-forwarded-for-client-ip'] = ip;
+  // console.log('API REQUEST');
+  // console.log(ip);
+  proxy.web(req, res, {
+      target: global.apiUrl
+  }); 
+  proxy.on('error', function(e) {
+      console.log(e);    
+  }); 
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
@@ -61,6 +82,8 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
+
 
 // production error handler
 // no stacktraces leaked to user
