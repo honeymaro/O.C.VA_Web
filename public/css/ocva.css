@@ -358,6 +358,8 @@
 		-webkit-user-select: none;
 		-ms-user-select: none;
 
+		border: 1px solid #ee4bb6;
+		border-radius: 5px;
 	}
 
 

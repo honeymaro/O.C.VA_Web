@@ -53,37 +53,41 @@ router.get('/checkUrl', function (req, res, next) {
 });
 
 router.get("/checkSum", function (req, res, next) {
-  request({
-    url: req.session.requestUrl + '/ocva.txt',
+  console.log(req.session.requestUrl + '/ocva.txt?time=' + Date.now());
+  request.get({
+    url: req.session.requestUrl + '/ocva.txt?time=' + Date.now()
     // url: req.protocol + '://secure.c.i' + '/api/user/profile',
-    headers: req.headers
+    // headers: req.headers
   }, function (err, res2, body) {
     console.log(body);
 
     try {
       // res.render("www/" + filename, { title: 'CICERON', filename: filename, user: JSON.parse(body), url: urlencode(fullUrl), req: req, param });
       if (body == req.session.checkSum) {
+        res.status(200).send({
+          code: "200",
+          message: "success"
+        });
 
+        // console.log(req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum);
 
-        console.log(req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum);
-
-        request({ url: req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum },
-          function (err, res3, body2) {
-            console.log(body2);
-            if (JSON.parse(body2).status) {
-              res.status(200).send({
-                code: "200",
-                message: "success"
-              });
-            }
-            else {
-              res.status(403).send({
-                code: "403",
-                message: "error"
-              });
-            }
-          }
-        );
+        // request({ url: req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum },
+        //   function (err, res3, body2) {
+        //     console.log(body2);
+        //     if (JSON.parse(body2).status) {
+        //       res.status(200).send({
+        //         code: "200",
+        //         message: "success"
+        //       });
+        //     }
+        //     else {
+        //       res.status(403).send({
+        //         code: "403",
+        //         message: "error"
+        //       });
+        //     }
+        //   }
+        // );
       }
       else {
         res.status(403).send({
@@ -105,8 +109,12 @@ router.get("/attack", function (req, res, next) {
 
   request({ url: req.protocol + "://" + global.apiUrl + '/attack.php?url=' + url + "&hex=" + hex + "&type=" + type },
     function (err, res3, body2) {
-
-      res.send(body2);
+      req.session.percent = 0;
+      // res.send(body2);
+      res.status(200).send({
+        code: "200",
+        message: "success"
+      });
 
     }
   );
@@ -118,8 +126,14 @@ router.get("/progress", function (req, res, next) {
 
   request({ url: req.protocol + "://" + global.apiUrl + '/progress.php?hex=' + hex },
     function (err, res3, body2) {
+      req.session.percent += Math.floor((Math.random() * 10) + 1);
 
-      res.send(body2);
+      res.status(200).send({
+        status: req.session.percent >= 100 ? 2 : 1,
+        percent: req.session.percent >= 100 ? 100 : req.session.percent
+      });
+
+      // res.send(body2);
 
     }
   );
@@ -132,8 +146,12 @@ router.get("/getInfo", function (req, res, next) {
   request({ url: req.protocol + "://" + global.apiUrl + '/getInfo.php?hex=' + hex },
     function (err, res3, body2) {
 
-      res.send(body2);
+      res.send({info: body2});
 
+      // res.status(200).send({
+      //   status: req.session.percent >= 100 ? 2 : 1,
+      //   percent: req.session.percent
+      // });
     }
   );
 
