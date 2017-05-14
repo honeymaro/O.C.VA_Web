@@ -35,7 +35,7 @@ router.get('/checkUrl', function (req, res, next) {
       return;
     }
     else {
-      req.session.requestUrl = url;
+      req.session.requestUrl = "http://" + url;
       req.session.checkSum = sha256(url + new Date());
       res.status(200).send({
         code: 200,
@@ -54,24 +54,34 @@ router.get('/checkUrl', function (req, res, next) {
 
 router.get("/checkSum", function (req, res, next) {
   request({
-    url: req.protocol + '://' + req.session.requestUrl + '/ocva.txt',
+    url: req.session.requestUrl + '/ocva.txt',
     // url: req.protocol + '://secure.c.i' + '/api/user/profile',
     headers: req.headers
   }, function (err, res2, body) {
-    // console.log(body);
+    console.log(body);
 
     try {
       // res.render("www/" + filename, { title: 'CICERON', filename: filename, user: JSON.parse(body), url: urlencode(fullUrl), req: req, param });
       if (body == req.session.checkSum) {
 
+
+        console.log(req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum);
+
         request({ url: req.protocol + "://" + global.apiUrl + '/sethex.php?url=' + req.session.requestUrl + "&hex=" + req.session.checkSum },
           function (err, res3, body2) {
-
-            res.status(200).send({
-              code: "200",
-              message: "success"
-            });
-
+            console.log(body2);
+            if (JSON.parse(body2).status) {
+              res.status(200).send({
+                code: "200",
+                message: "success"
+              });
+            }
+            else {
+              res.status(403).send({
+                code: "403",
+                message: "error"
+              });
+            }
           }
         );
       }
